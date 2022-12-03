@@ -1,18 +1,39 @@
+.wrapper {
+  width: 70%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.header {
+  background-color: khaki;
+  padding: 1px;
+  border-radius: 8px;
+}
+
 body {
   font-family: sans-serif;
 }
 
-input {
+.input {
+  margin-top: 5px;
+  background-color: #c1ffff;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.input-area {
   border-radius: 16px;
   border: none;
   padding: 6px 16px;
   outline: none;
+  margin-right: 7px;
 }
 
 button {
   border-radius: 16px;
   border: none;
   padding: 4px 16px;
+  margin-right: 10px;
 }
 
 button:hover {
@@ -21,47 +42,42 @@ button:hover {
   cursor: pointer;
 }
 
+.status-field {
+  margin-top: 40px;
+}
+
+.status {
+  display: flex;
+  list-style: none;
+}
+
+.status-list {
+  margin-right: 15px;
+  font-size: 13px;
+}
+
 li {
   margin-right: 8px;
 }
 
-.input-area {
-  background-color: #c1ffff;
-  width: 400px;
-  height: 30px;
-  border-radius: 8px;
-  padding: 8px;
-  margin: 8px;
-}
 
-.incomplete-area {
+.todo-area {
   background-color: #c6ffe2;
-  width: 400px;
-  min-height: 200px;
   padding: 8px;
-  margin: 8px;
   border-radius: 8px;
-}
-
-.complete-area {
-  background-color: #ffffe0;
-  width: 400px;
-  min-height: 200px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-}
-
-.title {
-  text-align: center;
-  margin-top: 0;
-  font-weight: bold;
-  color: #666;
 }
 
 .list-row {
   display: flex;
-  align-items: center;
+  list-style: none;
   padding-bottom: 4px;
+}
+
+.checkbox {
+  margin-right: 15px;
+}
+
+.text {
+  margin-right: auto;
 }
 

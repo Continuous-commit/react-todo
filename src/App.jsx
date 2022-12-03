@@ -65,26 +65,28 @@ export const App = () => {
   }
   return (
     <div className="wrapper">
-      <div className="input-area">
-        <input placeholder="TODOを入力" value={todoText.body} onChange={handleNewTodo} />
+      <div className="header">
+        <h1>Todo List</h1>
+      </div>
+      <div className="input">
+        <input placeholder="TODOを入力" value={todoText.body} onChange={handleNewTodo} className="input-area" />
         <button onClick={onClickAdd}>追加</button>
       </div>
-      <div>
-        <ul>
-          <li>全てのタスク: {allTaskCount()}</li>
-          <li>完了済: {completedCount()}</li>
-          <li>未完了: {inCompletedCount()}</li>
+      <div className="status-field">
+        <ul className="status">
+          <li className="status-list">全てのタスク: {allTaskCount()}</li>
+          <li className="status-list">完了済: {completedCount()}</li>
+          <li className="status-list">未完了: {inCompletedCount()}</li>
         </ul>
       </div>
-      <div className="incomplete-area">
-        <p className="title">未完了のTODO</p>
+      <div className="todo-area">
         <ul>
           {todoList.map((todo) => {
             if (editFlag) {
               return (
                 <div key={todo} className="list-row">
-                  <input type="checkbox" onClick={() => {onClickComplete(todo.id)}} />
-                  <li>{todo.body}</li>
+                  <input type="checkbox" onClick={() => {onClickComplete(todo.id)}} className="checkbox" />
+                  <li className="text">{todo.body}</li>
                   <button onClick={() => {onClickEdit(todo.id)}}>編集</button>
                   {/* ループしないようにアロー関数で！ */}
                   <button onClick={() => onClickDelete(todo.id)}>削除</button>
@@ -93,9 +95,9 @@ export const App = () => {
             } else {
               return (
                 // ループする際親要素にkeyを設定(差分をkeyを目印に抽出するため)
-                <div key={todo}>
-                  <input type="checkbox" onClick={() => {onClickComplete(todo.id)}} />
-                  <input onChange={handleEditTodo} />
+                <div key={todo} className="list-row">
+                  <input type="checkbox" onClick={() => {onClickComplete(todo.id)}} className="checkbox" />
+                  <input defaultValue={todo.body} onChange={handleEditTodo} className="text" />
                   <button onClick={() => saveTask(todo.id)}>保存</button>
                 </div>
               );
