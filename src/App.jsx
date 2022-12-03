@@ -1,5 +1,7 @@
 import './App.css';
 import { useState } from 'react';
+import { InputTodo } from './components/InputTodo';
+import { TodoList } from './components/TodoList';
 
 export const App = () => {
   // 状態を変化させる際useStateを使用
@@ -68,43 +70,19 @@ export const App = () => {
       <div className="header">
         <h1>Todo List</h1>
       </div>
-      <div className="input">
-        <input placeholder="TODOを入力" value={todoText.body} onChange={handleNewTodo} className="input-area" />
-        <button onClick={onClickAdd}>追加</button>
-      </div>
-      <div className="status-field">
-        <ul className="status">
-          <li className="status-list">全てのタスク: {allTaskCount()}</li>
-          <li className="status-list">完了済: {completedCount()}</li>
-          <li className="status-list">未完了: {inCompletedCount()}</li>
-        </ul>
-      </div>
-      <div className="todo-area">
-        <ul>
-          {todoList.map((todo) => {
-            if (editFlag) {
-              return (
-                <div key={todo} className="list-row">
-                  <input type="checkbox" onClick={() => {onClickComplete(todo.id)}} className="checkbox" />
-                  <li className="text">{todo.body}</li>
-                  <button onClick={() => {onClickEdit(todo.id)}}>編集</button>
-                  {/* ループしないようにアロー関数で！ */}
-                  <button onClick={() => onClickDelete(todo.id)}>削除</button>
-                </div>
-              )
-            } else {
-              return (
-                // ループする際親要素にkeyを設定(差分をkeyを目印に抽出するため)
-                <div key={todo} className="list-row">
-                  <input type="checkbox" onClick={() => {onClickComplete(todo.id)}} className="checkbox" />
-                  <input defaultValue={todo.body} onChange={handleEditTodo} className="text" />
-                  <button onClick={() => saveTask(todo.id)}>保存</button>
-                </div>
-              );
-            }
-          })}
-        </ul>
-      </div>
+      <InputTodo todoText={todoText} onChange={handleNewTodo} onClick={onClickAdd} />
+      <TodoList 
+        editFlag={editFlag} 
+        allTaskCount={allTaskCount} 
+        inCompletedCount={inCompletedCount} 
+        completedCount={completedCount}  
+        todoList={todoList}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
+        onClickEdit={onClickEdit}
+        handleEditTodo={handleEditTodo}
+        saveTask={saveTask}
+      />
     </div>
   );
 };
