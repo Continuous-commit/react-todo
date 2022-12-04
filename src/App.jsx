@@ -6,29 +6,23 @@ import { TodoList } from './components/TodoList';
 export const App = () => {
   // 状態を変化させる際useStateを使用
   const [todoList, setTodoList] = useState([]);
-  const [todoText, setTodotext] = useState({ id: 0, body: "", isCompleted: false });
+  const [todo, setTodo] = useState({ id: 0, body: "", isCompleted: false });
   const [editFlag, setEditFlag] = useState(true);
   const [editedTodo, setEditedTodo] = useState({ id: 0, body: "", isCompleted: false });
 
   const allTaskCount = () => todoList.length
 
-  const inCompletedCount = () => todoList.filter(todoText => !(todoText.isCompleted)).length
+  const inCompletedCount = () => todoList.filter(todo => !(todo.isCompleted)).length
 
-  const completedCount = () => todoList.filter(todoText => todoText.isCompleted).length
+  const completedCount = () => todoList.filter(todo => todo.isCompleted).length
 
-  const handleNewTodo = (e) => setTodotext({ ...todoText, body: e.target.value });
-
-  // const onChangeTodoEditText = (event, index) => {
-  //   const todos = [...incompleteTodos];
-  //   todos[index].data = event.target.value;
-  //   setIncompleteTodos(todos);
-  // };
+  const handleNewTodo = (e) => setTodo({ ...todo, body: e.target.value });
 
   const onClickAdd = (e) => {
     e.preventDefault()
-    if (todoText.body === "") return;
-    setTodoList([...todoList, todoText]);
-    setTodotext({id: todoText.id + 1, body: "", isCompleted: false});
+    if (todo.body === "") return;
+    setTodoList([...todoList, todo]);
+    setTodo({id: todo.id + 1, body: "", isCompleted: false});
   };
 
   const onClickComplete = (id) => {
@@ -70,7 +64,7 @@ export const App = () => {
       <div className="header">
         <h1>Todo List</h1>
       </div>
-      <InputTodo todoText={todoText} onChange={handleNewTodo} onClick={onClickAdd} />
+      <InputTodo todo={todo} onChange={handleNewTodo} onClick={onClickAdd} />
       <TodoList 
         editFlag={editFlag} 
         allTaskCount={allTaskCount} 
