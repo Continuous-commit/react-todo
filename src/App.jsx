@@ -6,8 +6,7 @@ import { TodoList } from './components/TodoList';
 export const App = () => {
   // 状態を変化させる際useStateを使用
   const [todoList, setTodoList] = useState([]);
-  const [todo, setTodo] = useState({ id: 0, body: "", isCompleted: false });
-  const [editFlag, setEditFlag] = useState(true);
+  const [todo, setTodo] = useState({ id: 0, body: "", isCompleted: false, editFlag: true });
   const [editedTodo, setEditedTodo] = useState({ id: 0, body: "", isCompleted: false });
 
   const allTaskCount = () => todoList.length
@@ -22,7 +21,7 @@ export const App = () => {
     e.preventDefault()
     if (todo.body === "") return;
     setTodoList([...todoList, todo]);
-    setTodo({id: todo.id + 1, body: "", isCompleted: false});
+    setTodo({id: todo.id + 1, body: "", isCompleted: false, editFlag: true });
   };
 
   const onClickComplete = (id) => {
@@ -42,7 +41,11 @@ export const App = () => {
   const onClickEdit = (id) => {
     const editList = {...editedTodo, id};
     setEditedTodo(editList);
-    setEditFlag(false);
+    const editState = todoList.map((todo) => {
+      if(todo.id === id) todo.editFlag = !todo.editFlag
+      return todo
+    })
+    setTodoList(editState);
   };
 
   const handleEditTodo = (e) => {
@@ -57,7 +60,11 @@ export const App = () => {
       return todo
     })
     setTodoList(newTodoList);
-    setEditFlag(true);
+    const editState = todoList.map((todo) => {
+      if(todo.id === id) todo.editFlag = !todo.editFlag
+      return todo
+    })
+    setTodoList(editState);
   }
   return (
     <div className="wrapper">
@@ -66,7 +73,6 @@ export const App = () => {
       </div>
       <InputTodo todo={todo} onChange={handleNewTodo} onClick={onClickAdd} />
       <TodoList 
-        editFlag={editFlag} 
         allTaskCount={allTaskCount} 
         inCompletedCount={inCompletedCount} 
         completedCount={completedCount}  

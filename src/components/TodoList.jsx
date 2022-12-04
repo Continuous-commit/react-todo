@@ -1,8 +1,7 @@
 import '../App.css';
 
 export const TodoList = (props) => {
-  const { editFlag,
-          allTaskCount, 
+  const { allTaskCount, 
           completedCount,
           inCompletedCount,
           todoList,
@@ -24,7 +23,7 @@ export const TodoList = (props) => {
       <div className="todo-area">
         <ul>
           {todoList.map((todo) => {
-            if (editFlag) {
+            if (todo.editFlag) {
               return (
                 <div key={todo} className="list-row">
                   <input type="checkbox" onClick={() => {onClickComplete(todo.id)}} className="checkbox" />
