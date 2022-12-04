@@ -34,8 +34,7 @@ export const App = () => {
 
   const onClickDelete = (id) => {
     const newTodos = [...todoList];
-    newTodos.splice(id, 1);
-    setTodoList(newTodos);
+    setTodoList(newTodos.filter(todo => !(todo.id === id)));
   };
 
   const onClickEdit = (id) => {
