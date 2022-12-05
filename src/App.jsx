@@ -7,7 +7,6 @@ export const App = () => {
   // 状態を変化させる際useStateを使用
   const [todoList, setTodoList] = useState([]);
   const [todo, setTodo] = useState({ id: 0, body: "", isCompleted: false, editFlag: true });
-  const [editedTodo, setEditedTodo] = useState({ id: 0, body: "", isCompleted: false });
 
   const allTaskCount = () => todoList.length
 
@@ -38,8 +37,8 @@ export const App = () => {
   };
 
   const onClickEdit = (id) => {
-    const editList = {...editedTodo, id};
-    setEditedTodo(editList);
+    const editList = {...todo, id};
+    setTodo(editList);
     const editState = todoList.map((todo) => {
       if(todo.id === id) todo.editFlag = !todo.editFlag
       return todo
@@ -48,15 +47,15 @@ export const App = () => {
   };
 
   const handleEditTodo = (e) => {
-    const handleEdit = {...editedTodo, body: e.target.value};
-    setEditedTodo(handleEdit);
+    const handleEdit = {...todo, body: e.target.value};
+    setTodo(handleEdit);
   };
 
   const saveTask = (id) => {
-    if (editedTodo === "") return
-    const newTodoList = todoList.map((todo) => {
-      if(todo.id === editedTodo.id) todo.body = editedTodo.body
-      return todo
+    if (todo === "") return
+    const newTodoList = todoList.map((td) => {
+      if(td.id === todo.id) td.body = todo.body
+      return td
     })
     setTodoList(newTodoList);
     const editState = todoList.map((todo) => {
