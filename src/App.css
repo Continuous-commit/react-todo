@@ -1,38 +1,83 @@
-.App {
+.wrapper {
+  width: 70%;
+  margin: 50px auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  background-color: khaki;
+  padding: 1px;
+  border-radius: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.input {
+  margin-top: 5px;
+  background-color: #c1ffff;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.input-area {
+  border-radius: 16px;
+  border: none;
+  padding: 6px 16px;
+  outline: none;
+  margin-right: 7px;
+}
+
+button {
+  border-radius: 16px;
+  border: none;
+  padding: 4px 16px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #ff7fff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.status-field {
+  margin-top: 40px;
+}
+
+.status {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+.status-list {
+  margin-right: 15px;
+  font-size: 13px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li {
+  margin-right: 8px;
 }
+
+
+.todo-area {
+  background-color: #c6ffe2;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.list-row {
+  display: flex;
+  list-style: none;
+  padding-bottom: 4px;
+}
+
+.checkbox {
+  margin-right: 15px;
+}
+
+.text {
+  margin-right: auto;
+}
+
